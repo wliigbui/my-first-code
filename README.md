@@ -10,3 +10,29 @@ int main()
 	    printf("sum=%d\n", sum);
 	return 0;](url)
   
+//
+//             
+//#include<stdio.h>                       //define定义  const常变量
+//int main()
+//{
+//	//const int n = 10;
+//	//int arr[n] = { 0 };
+//#define MAX 10
+//	printf("%d\n", MAX);
+//}
+//	
+
+//
+//#include<string.h>                       //比较字符串的长度
+//#include<stdio.h>
+////int main()
+////{
+////	char arr1[] = "abc\0";
+////	char arr2[] = { 'a','b','c','\0'};
+//	printf(" % d\n", strlen(arr1));
+//
+//		printf("%d\n", strlen(arr2));
+//
+//
+//	return 0;
+//}
