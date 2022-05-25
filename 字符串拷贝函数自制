@@ -1,0 +1,21 @@
+#include<stdio.h>           //字符串拷贝
+#include<assert.h>
+char* my_strcpy(char*arr1,const char*arr2)
+{
+    char* ret = arr1;
+    assert(arr1 != NULL);          //断言
+    assert(arr2 != NULL);          //断言
+    while (*arr1++ = *arr2++)
+    {
+      ;
+    }    
+    return ret;
+}
+int main()
+{
+    char arr1[] = "############";
+    char arr2[] = "bit";
+    
+    printf("%s\n", my_strcpy(arr1, arr2));
+    return 0;
+}
