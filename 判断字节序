@@ -1,0 +1,20 @@
+#include<stdio.h>                // 判断当前的字节序   
+int check_sys()
+{
+    int a = 1;
+    return *(char*)&a; // 返回一：小端；返回二：大端
+}
+int main()
+{
+    int ret = check_sys();
+    if (ret == 1)
+    {
+        printf("为小端\n");
+    }
+    else
+    {
+        printf("为大端\n");
+    }
+               
+    return 0;
+}
