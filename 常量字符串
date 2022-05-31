@@ -1,0 +1,9 @@
+#include<stdio.h>
+int main()
+{
+    const char arr[] = "abcde";//  常量字符串
+    const char* pc = arr;
+    printf("%s\n", pc);
+    printf("%c\n", *pc);
+    return 0;
+//常量字符串不可修改，char*pc指向arr数组首元素地址;
