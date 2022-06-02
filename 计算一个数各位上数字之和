@@ -1,0 +1,19 @@
+#include<stdio.h> ////879              计算一个数各位上数字之和
+int Digitsum(int a)
+{
+    while (a)
+    {
+        return a % 10 + Digitsum(a / 10);
+    }
+    
+        return 0;
+    
+}
+int main()
+{
+    int a = 0;
+    scanf("%d", &a);
+    int m = Digitsum(a);
+    printf("%d\n", m);
+    return 0;
+}
