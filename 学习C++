@@ -1,0 +1,70 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+//1.显示姓名和地址
+void test01()
+{
+	cout << "daljiale" << "2336085146@qq.com" << endl;
+
+}
+
+//2、输入一个以long为单位的距离，然后将它转换成码（一long等于220码）
+void test02()
+{
+	int d;
+	cin >> d;
+	int ret;
+	ret = d * 220;
+	cout << ret<<"码";
+}
+
+//3、使用三个用户定义的函数，并生成输出
+
+//void print1()
+//{
+//	cout << "Three blind mice" << endl;
+//}
+//
+//void print2()
+//{
+//	cout << "See you they run" << endl;
+//}
+//int main()
+//{
+//	print1();
+//	print1();
+//	print2();
+//	print2();
+//	return 0;
+//}
+
+//4、让用户输入其年龄，然后显示该年龄包含多少个月
+void test04()
+{
+	int age;
+	cin >> age;
+	cout << age * 12 <<"个月"<< endl;
+}
+
+//5、
+
+//6、编写一个函数，以光年为参数，并返回对应天文单位的值
+long test06(double &g)
+{
+	
+	cout << g << "light years = " << g * 63240 << "astronomical units" << endl;
+}
+
+//7、用户输入小时数和分钟数。传递给一个void（）函数
+void test07(int h,int m)
+{
+	cout << "Enter the number of hours: " << h << endl;
+	cout << "Enter the number of minutes: " << m << endl;
+	cout << "Time: " << h << " : " << m << endl;
+}
+int main()
+{
+	
+	return EXIT_SUCCESS;
+}
