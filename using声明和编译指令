@@ -1,0 +1,36 @@
+
+#include<iostream>
+using namespace std;
+
+namespace KingGlory
+{
+	int sunwukongId = 10;
+}
+void test01()
+{
+	int sunwukongId = 20;
+
+	//using声明
+	//using KingGlory::sumwukongId;
+	cout << "" << sunwukongId << endl;
+}
+
+//using 编译指令
+namespace LOL
+{
+	int sunwukongId = 30;
+}
+void test02()
+{
+	//int sunwukongId = 20;
+	using namespace KingGlory;//打开王者荣耀的房间
+	using namespace LOL;//打开LOL的房间
+	//明确哪个房间的变量
+	cout  << LOL::sunwukongId << endl;
+
+}
+int main()
+{
+	//test01();
+	test02();
+	return EXIT_SUCCESS;
