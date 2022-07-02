@@ -1,0 +1,72 @@
+
+#include<iostream>
+using namespace std;
+//int a;
+//int a = 10;
+
+
+//void test02()
+//{
+//
+//	getRectS(10, 10, 10);
+//}
+//int getRectS(int w, int h)
+//{
+//	return 0;
+//}
+
+struct Person
+{
+
+	int m_Age;
+	void plusAge() { m_Age++; };//C++中struct中可以加函数
+};
+
+
+void test04()
+{
+      Person p1;//不用写struct
+	  p1.m_Age = 10;
+	  p1.plusAge();
+	  cout << p1.m_Age << endl;
+}
+
+
+bool flag;
+void test05()
+{
+	cout << sizeof(bool) << endl;
+
+	flag = 100;
+	//bool类型非零变成1  0 还是 0；
+	cout << flag << endl;
+}
+
+void test06()
+{
+	int a = 10;
+	int b = 20;
+
+	cout << "ret = " << (a > b ? a : b) << endl;
+
+	(a > b ? a : b) = 100; //返回变量
+	cout << "a = "<<a <<endl<< "b = "<<b << endl;
+}
+
+void test07()
+{
+	const int m_B = 20;//常量
+
+	int* p = (int*)&m_B;
+	*p = 200;
+	cout << *p << endl << m_B << endl;
+}
+int main()
+{
+	//test04();
+//	test05();
+	//test06();
+	test07();
+
+	return EXIT_SUCCESS;
+}
