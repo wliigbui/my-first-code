@@ -1,0 +1,41 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+//1.引用基本用法
+void test01()
+{
+	int a = 10;
+	int& b = a;
+	b = 20;
+
+}
+//2.引用必须初始化
+void test02()
+{
+	int a = 10;
+	int& b = a;
+	int c = 20;
+	b = c;
+}
+
+//3.对数组建立引用
+void test03()
+{
+	int arr[10];
+	for (int i = 0; i < 10; i++)
+	{
+		arr[i] = i;
+	}
+
+	int(&pArr)[10] = arr;
+	for (int i = 0; i < 10; i++)
+	{
+		cout << pArr[i] << "";
+	}
+
+	//起别名
+
+	typedef int(ARRAYREF)[10];
+	ARRAYREF& pArr2 = arr;
+}
