@@ -1,0 +1,40 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+
+#define MyAdd(x,y) x+y;//宏定义，存在缺陷
+
+void test01()
+{
+	int ret = MyAdd(10, 20);
+
+	cout << "ret= " << ret << endl;
+}
+
+#define MyCompare(a,b) a<b?a:b
+
+inline void mycompare(int a, int b) //内联函数
+{
+	int ret = a < b ? a : b;
+
+	cout << "ret = " << ret << endl;
+}
+void test02()
+{
+	int a = 10;
+	int b = 20;
+	int ret = MyCompare(++a, b);//++a<b?++a:b;有错误
+
+	cout << "ret= " << ret << endl;//输出ret= 12
+}
+
+
+//内联函数注意
+//inline void test();
+//void test{};不算内联函数
+int main()
+{
+	
+	return EXIT_SUCCESS;
+}
