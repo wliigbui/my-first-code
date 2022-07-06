@@ -1,0 +1,30 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+//c语言中没有默认参数和占位参数
+// 
+//函数的默认参数
+//从有一个参数开始，后面必须都有
+//函数声明和实现里只能有一个默认参数
+void func(int a = 10, int b = 10)
+{
+	cout << "a + b = " << a + b << endl;
+}
+
+void test01()
+{
+	func();
+}
+
+//函数的占位参数
+//函数调用必须提供这个参数
+void fun2(int a, int = 1)
+{
+
+}
+int main()
+{
+	test01();
+	return EXIT_SUCCESS;
+}
