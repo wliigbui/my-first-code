@@ -1,0 +1,33 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+void test01()
+{
+	//int &ref =10; 不合法的内存
+	const int &ref = 10;
+
+	//改const方法
+	int* p = (int*)&ref;
+	*p = 100;
+	cout << "ref= "<<ref << endl;
+}
+
+void showValue(const int &val)
+{
+	cout << "ref= " << val << endl;
+
+}
+
+
+void test02()
+{
+	int a = 10;
+	showValue(a);
+}
+int main()
+{
+	//test01();
+	test02();
+	return EXIT_SUCCESS;
+}
