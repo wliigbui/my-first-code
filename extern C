@@ -1,0 +1,38 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+#include"16.h"
+
+
+//C++中使用C语言方法
+
+//extern "C" void show();
+int main()
+{
+	show();
+
+	return EXIT_SUCCESS;
+}
+
+
+
+
+
+
+
+
+//头文件
+#pragma once
+
+#ifdef __cplusplus
+extern"C"{
+#endif
+#include<stdio.h>
+
+  void show();
+
+  void show2();
+
+#ifdef __cplusplus
+}
+#endif
