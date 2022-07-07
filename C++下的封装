@@ -1,0 +1,89 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+struct Person
+{
+	char mName[64];
+
+	int mAge;
+
+	void PersonEat()
+	{
+		cout << "吃饭" << endl;
+	}
+};
+
+
+struct Dog
+{
+	char mName[64];
+
+	int mAge;
+
+	void DogEat()
+	{
+		cout << "吃狗粮" << endl;
+	}
+};
+
+void test01()
+{
+	Person p1;
+	strcpy(p1.mName, "老王");
+	p1.PersonEat();
+}
+
+class Animal
+{
+private:
+	//默认为private
+	void eat()
+	{
+		mHeight = 190;
+	}
+
+	int mAge;
+
+public:
+	//类内类外都可以访问
+	int mHeight;
+
+protected:
+	//类内可以访问，类外不能访问
+	int mWeight;
+	void setWeight();
+
+};
+
+
+class person
+{
+public:
+	void setName(string a)
+	{
+		m_Name = a;
+	}
+	string getName()
+	{
+		return m_Name;
+	}
+private:
+	string m_Name;//读写
+	int m_Age = 0; //;
+	string m_Lover; //只写
+};
+
+void test02()
+{
+	person p1;
+	p1.setName("老王");
+	cout << "姓名是：" <<  p1.getName() << endl;
+
+	
+}
+int main()
+{
+	test02();
+	return EXIT_SUCCESS;
+}
