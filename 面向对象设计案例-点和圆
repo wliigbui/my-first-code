@@ -1,0 +1,50 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include"circle.h"
+using namespace std;
+
+
+
+//利用全局函数 判断点和圆的关系
+void isInCircle(circle &c,point &p)
+{
+	//圆心和点的距离的平方
+	int distance = (p.getX() - c.getCenter().getX())* (p.getX() - c.getCenter().getX()) + (p.getY() - c.getCenter().getY())* (p.getY() - c.getCenter().getY());
+	int R = c.getR()* c.getR();
+
+	if (distance == R)
+	{
+		cout << "全局函数::点在圆上" << endl;
+	}
+	else if (distance > R)
+	{
+		cout << "全局函数::点在圆外" << endl;
+	}
+	else
+	{
+		cout << "全局函数::点在圆内" << endl;
+	}
+}
+
+void test01()
+{
+	point p1;// 创建点p1
+	p1.setX(10);
+	p1.setY(10);
+
+	circle c1;// 创建圆c1
+	point center;// 创建圆心点 center
+	center.setX(10);
+	center.setY(0);
+	c1.setCenter(center);
+	c1.setR(10);
+
+	isInCircle(c1, p1);
+	c1.isInCircleByClass(p1);
+}
+
+int main()
+{
+	test01();
+	return EXIT_SUCCESS;
+}
