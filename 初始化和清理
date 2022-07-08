@@ -1,0 +1,35 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+
+class Person
+{
+public:
+	//构造函数
+	//与类名相同，没有返回值，不写void，可以重载
+	Person()
+	{
+
+	}
+	Person(int a)
+	{
+
+	}
+	//析构函数
+	//与类名相同 类名前加~，没有返回值，不写void，不能有参数
+	~Person()
+	{
+
+	}
+};
+
+void test01()
+{
+	Person p1;
+}
+int main()
+{
+
+	return EXIT_SUCCESS;
+}
