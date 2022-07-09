@@ -1,0 +1,49 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+
+class Person
+{
+public:
+
+	Person()
+	{
+		cout << "默认构造函数调用" << endl;
+	}
+	~Person()
+	{
+		cout << "析构函数调用" << endl;;
+	}
+};
+
+
+void test01()
+{
+	//Person p1;
+
+	Person* p2 = new Person;
+	delete p2;
+
+}
+
+void test02()
+{
+	void* p = new Person;
+	delete p;
+	//无法释放内存
+}
+
+void test03()
+{
+	//通过new开辟数组
+	//一定需要默认构造函数
+	Person *pArray = new Person[10];
+	//释放数组加【】
+	delete[] pArray;
+}
+int main()
+{
+
+	return EXIT_SUCCESS;
+}
