@@ -1,0 +1,59 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+class Person
+{
+public:
+
+	static int m_Age;//静态成员变量，共享数据
+	//在类外初始化
+
+	//静态成员函数
+	//不可以访问普通成员变量
+	static void func()
+	{
+		cout << "func调用" << endl;
+	}
+private:
+	static int m_other; //private权限下同样在类外初始化
+
+	static void func2()
+	{
+		cout << "func2调用" << endl;
+	}
+};
+int Person::m_Age = 0;//初始化
+int Person::m_other = 0;
+
+
+
+void test01()
+{
+	Person p1;
+	p1.m_Age = 10;
+
+	Person p2;
+	p2.m_Age = 20;
+
+	cout << "p1= " << p1.m_Age << endl;
+	cout << "p2= " << p2.m_Age << endl;
+	//共享数据
+
+	//通过类名访问属性
+	cout << "通过类名访问属性" << Person::m_Age << endl;
+
+	//静态成员函数的调用
+	p1.func();
+	p2.func();
+	Person::func();
+}
+
+
+
+int main()
+{
+	test01();
+
+	return EXIT_SUCCESS;
+}
