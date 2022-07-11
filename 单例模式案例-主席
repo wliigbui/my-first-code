@@ -1,0 +1,50 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+
+//为了创建类中对象，并且保证只有一个
+class ChairMan
+{
+public:
+	//提供方法访问主席
+	static ChairMan* getChairman()
+	{
+		return singleMan;
+	}
+	
+private:
+	//构造函数创建主席 进行私有化
+	ChairMan()
+	{
+		cout << "创建主席" << endl;
+	}
+
+	//拷贝构造函数私有化
+	ChairMan(const ChairMan* c)
+	{
+
+	}
+	static ChairMan* singleMan;
+};
+
+ChairMan* ChairMan::singleMan = new ChairMan;
+
+
+void test01()
+{
+	/*ChairMan c1;
+	ChairMan* c2 = new ChairMan;*/
+
+	ChairMan* cm1 = ChairMan::getChairman();
+	
+}
+
+
+
+int main()
+{
+	test01();
+	 
+	return EXIT_SUCCESS;
+}
