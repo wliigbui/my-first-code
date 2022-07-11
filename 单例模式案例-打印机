@@ -1,0 +1,43 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Printer
+{
+public:
+	//获取打印机函数
+	static Printer* getPrinter()
+	{
+		return printSingle;
+	}
+
+	//打印机打印功能函数
+	void print(string text)
+	{
+		cout << text << endl;
+	}
+
+
+private:
+	//私有化打印机的构造函数
+	Printer() {}
+	Printer(const Printer* p) {}
+	static Printer* printSingle;
+};
+
+Printer* Printer::printSingle = new Printer;
+
+void test01()
+{
+	Printer* cm1 = Printer::getPrinter();
+	cm1->print("我爱中国");
+
+}
+
+int main()
+{
+	test01();
+
+	return EXIT_SUCCESS;
+}
