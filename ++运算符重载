@@ -1,0 +1,51 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+class MyInteger
+{
+public:
+	MyInteger()
+	{
+		m_Num = 0;
+	}
+
+	//前置++重载
+	MyInteger& operator++()
+	{
+		this->m_Num++;
+		return *this;
+	}
+
+    //后置++重载
+	MyInteger operator++(int)//参数用于区分前置后置
+	{
+		MyInteger tmp = *this;
+		m_Num++;
+		return tmp;
+	}
+	int m_Num;
+};
+
+ostream& operator<<(ostream& cout, MyInteger myint)
+{
+	cout << myint.m_Num;
+	return cout;
+}
+
+void test01()
+{
+	MyInteger myInt;
+	cout << ++myInt << endl;
+
+	cout << myInt++ << endl;
+
+	cout << myInt << endl;
+}
+
+
+int main()
+{
+	test01();
+	return EXIT_SUCCESS;
+}
