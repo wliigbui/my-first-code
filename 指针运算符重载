@@ -1,0 +1,78 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+class Person
+{
+public:
+	Person(int age)
+	{
+		this->m_Age = age;
+	}
+
+	void showAge()
+	{
+		cout << "年龄为： " << this->m_Age << endl;
+	}
+
+	~Person()
+	{
+		cout << "析构函数调用" << endl;
+	}
+
+	int m_Age;
+	
+};
+
+//智能指针
+//用来托管自定义类型的对象，让对象进行自动的释放
+class smartPointer
+{
+public:
+	smartPointer(Person*person)
+	{
+		this->person = person;
+	}
+
+	//重载->让智能指针对象和Person*p一样使用
+	Person* operator->()
+	{
+		return this->person;
+	}
+
+	//重载*
+	Person& operator*()
+	{
+		return *this->person;
+	}
+	~smartPointer()
+	{
+		cout << "智能指针析构" << endl;
+		if (this->person != NULL)
+		{
+			delete this->person;
+			this->person = NULL;
+		}
+	}
+private:
+	Person* person;
+};
+
+void test01()
+{
+	/*Person* p1 = new Person(10);
+	delete p1;*/
+
+	smartPointer sp(new Person(10));//开辟到了栈上
+
+	sp->showAge();
+
+	(*sp).showAge();
+}
+
+
+int main()
+{
+	test01();
+	return EXIT_SUCCESS;
+}
