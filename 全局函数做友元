@@ -1,0 +1,44 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+class Building
+{
+	//让全局的好基友 变为友元函数
+	friend void goodGay(Building* building);
+public:
+	Building()
+	{
+		this->m_BedRoom = "卧室";
+		this->m_SittingRoom = "客厅";
+	}
+
+
+
+	//客厅
+	string m_SittingRoom;
+
+private:
+	//卧室
+	string m_BedRoom;
+};
+
+//全局函数
+void goodGay(Building* building)
+{
+	cout << "好基友在" << building->m_SittingRoom << endl;
+	cout << "好基友在" << building->m_BedRoom << endl;
+}
+
+void test01()
+{
+	Building* b1 = new Building;
+	goodGay(b1);
+}
+
+int main()
+{
+	test01();
+
+	return EXIT_SUCCESS;
+}
