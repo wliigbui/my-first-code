@@ -1,0 +1,89 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+//一个类默认创建 =号运算符重载 函数 进行简单值传递
+class Person
+{
+public:
+
+	Person(int a)
+	{
+		this->m_A = a;
+	}
+
+
+	int m_A;
+};
+
+
+void test01()
+{
+	Person p1(10);
+	Person p2(0);
+
+	p2 = p1;//赋值
+
+	cout << "p2的m_A = " << p2.m_A << endl;
+
+
+}
+
+
+class Person2
+{
+public:
+	Person2(const char* name)
+	{
+		this->pName = new char[strlen(name) + 1];
+		strcpy(this->pName, name);
+	} 
+
+	//重载=
+	Person2& operator=(const Person2& p)
+	{
+		if (this->pName != NULL)
+		{
+			delete[] this->pName;
+			this->pName = NULL;
+		}
+
+		this->pName = new char[strlen(p.pName) + 1];
+		strcpy(this->pName, p.pName);
+
+		return* this;
+	}
+	~Person2()
+	{
+		cout << "析构函数调用";
+		if (this->pName != NULL)
+		{
+			delete[]this->pName;
+			this->pName = NULL;
+		}
+	}
+	char* pName;
+};
+
+void test02()
+{
+	Person2 p1("狗蛋");
+	Person2 p2("狗剩");
+	Person2 p3("");
+	p3 = p2 = p1;
+	cout <<p2.pName<< p3.pName << endl;
+
+	/*int a = 10;//模仿的对象
+	int b = 20;
+	int c;
+	c = a = b;
+	cout << a << " " << b << " " << c << endl;*/
+}
+
+int main()
+{
+	test01();
+	test02();
+
+	return EXIT_SUCCESS;
+}
