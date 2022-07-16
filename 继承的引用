@@ -1,0 +1,80 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+//创建公共的基类（父类）
+class BasePage
+{
+public:
+	void header()
+	{
+		cout << "公共顶部" << endl;
+	}
+
+	void foot()
+	{
+		cout << "公共底部" << endl;
+	}
+
+	void edge()
+	{
+		cout << "公共侧面" << endl;
+	}
+};
+
+class News :public BasePage
+{
+public:
+	void content()
+	{
+		cout << "习近平主席。。。" << endl;
+	}
+
+};
+
+class Entertainment:public BasePage
+{
+public:
+	void content()
+	{
+		cout << "白百何。。。" << endl;
+	}
+};
+
+class Game:public BasePage
+{
+public:
+	void content()
+	{
+		cout << "LPL赛事直播。。" << endl;
+	}
+};
+
+
+void test01()
+{
+	//新闻类页面
+	News n1;
+	n1.header();
+	n1.foot();
+	n1.edge();
+	n1.content();
+	//娱乐类页面
+	Entertainment e1;
+	e1.header();
+	e1.foot();
+	e1.edge();
+	e1.content();
+	//游戏类页面
+	Game g1;
+	g1.header();
+	g1.foot();
+	g1.edge();
+	g1.content();
+}
+
+int main()
+{
+	test01();
+	return EXIT_SUCCESS;
+}
