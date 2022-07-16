@@ -1,0 +1,71 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+
+
+
+class Base
+{
+public:
+	Base()
+	{
+		m_A = 100;
+		//cout << "父类构造函数调用" << endl;	
+	}
+
+	void func()
+	{
+		cout << "父类func()调用" << endl;
+	}
+
+	void func(int a)
+	{
+		cout << "父类func(int a)调用" << endl;
+	}
+
+	~Base()
+	{
+		//cout << "父类析构调用" << endl;
+	}
+
+	 int m_A;
+};
+class Son :public Base
+{
+public:
+	Son()
+	{
+		//cout << "子类构造函数调用" << endl;
+		m_A = 200;
+	}
+	void func()
+	{
+		cout << "子类func()调用" << endl;
+	}
+
+	~Son()
+	{
+		//cout << "子类析构调用" << endl;
+	}
+
+	int m_A;
+};
+
+void test01()
+{
+	
+	Son s1;
+	cout << "m_A= " << s1.Base::m_A<< endl;
+
+	s1.func();
+	s1.Base::func();
+	s1.Base::func(10);
+}
+
+
+int main()
+{
+	test01();
+	return EXIT_SUCCESS;
+}
