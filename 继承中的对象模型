@@ -1,0 +1,34 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+class Base
+{
+public:
+	int m_A;
+protected:
+	int m_B;
+private:
+	int m_C;
+};
+
+
+//子类中有父类的私有（从子类大小中可以看出） 但无法访问
+class Son :public Base
+{
+public:
+	int m_D;
+};
+
+void test01()
+{
+	cout << sizeof(Son) << endl;//大小为16=4 * int
+}
+
+
+
+int main()
+{
+	test01();
+	return EXIT_SUCCESS;
+}
