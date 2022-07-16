@@ -1,0 +1,78 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+
+class Base
+{
+public:
+	Base()
+	{
+		cout << "父类构造函数调用" << endl;
+	}
+
+	~Base()
+	{
+		cout << "父类析构函数调用" << endl;
+	}
+};
+
+
+
+
+//子类会继承父类的成员属性，函数
+//子类不会继承父类的构造函数和析构函数
+//只有父类可以构造和析构自己的属性
+
+class Son :public Base
+{
+public:
+	Son()
+	{
+		cout << "子类构造函数调用" << endl;
+	}
+
+	~Son()
+	{
+		cout << "子类析构函数调用" << endl;
+	}
+};
+void test01()
+{
+	Son s1;
+}
+
+
+
+class Base2
+{
+public:
+	Base2(int a)
+	{
+		this->m_A = a;
+	}
+
+	int m_A;
+};
+
+
+class Son2:public Base2
+{
+public:
+	Son2(int a) :Base2(a)//利用初始化列表方式 显示调用 有参构造
+	{
+
+	}
+
+};
+
+void test02()
+{
+	Son2 s2(100);
+}
+int main()
+{
+	test01();
+	test02();
+	return EXIT_SUCCESS;
+}
