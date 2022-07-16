@@ -1,0 +1,96 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+class  Base1
+{
+public:
+	int m_A;
+protected:
+	int m_B;
+private:
+	int m_C;
+};
+
+//公有继承
+class Son1 :public Base1
+{
+public:
+	void func()
+	{
+		//	cout << m_C << endl;//基类私有   不继承
+		cout << m_A << endl; //基类公有 可以继承
+		cout << m_B << endl; //基类保护 可以继承
+	}
+	
+};
+
+
+//保护继承
+class Base2
+{
+public:
+	int m_A;
+protected:
+	int m_B;
+private:
+	int m_C;
+};
+
+class Son2 :protected Base2
+{
+public:
+	void func()
+	{
+		//cout << m_C;//基类私有 不可访问
+		cout << m_A << endl;//基类公有 可以继承 但是变成protected
+		cout << m_B << endl;//基类保护 可以继承 仍为protected
+	}
+};
+
+
+
+//私有继承
+class Base3
+{
+public:
+	int m_A;
+protected:
+	int m_B;
+private:
+	int m_C;
+};
+
+
+class Son3 :private Base3
+{
+public:
+	void func()
+	{
+		//cout << m_C << endl;//基类私有 不可继承
+		cout << m_A << endl;//基类公有 可以继承 但变为private
+		cout << m_B << endl;//基类保护 可以继承 但变为private
+	}
+};
+
+
+class GrandSon3 :public Son3
+{
+public:
+	void func()
+	{
+		//cout << m_A << endl;//基类私有 不可继承
+	}
+};
+void myFunc()
+{
+	Son1 s1;
+	s1.m_A;
+	//s1.m_B;
+
+	Son2 s2;
+	//s2.m_A;
+	//s2.m_B;
+
+	//s1.m_B;  //类外不能访问protected
+}
