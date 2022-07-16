@@ -1,0 +1,56 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<string>
+using namespace std;
+
+class MyPrint
+{
+public:
+	MyPrint()
+	{
+	}
+
+	//()重载
+	void operator()(string text)
+	{
+		cout << text << endl;
+	}
+	~MyPrint()
+	{
+	}
+
+private:
+
+};
+
+void test01()
+{
+	MyPrint myPrint;
+	myPrint("Hello,World");//仿函数
+
+}
+
+class MyAdd
+{
+public:
+	int operator()(int v1, int v2)
+	{
+		return v1 + v2;
+
+	}
+};
+
+void test02()
+{
+	MyAdd myAdd;
+	cout << myAdd(3, 1) << endl;
+
+	cout << MyAdd()(3, 1) << endl;//匿名对象
+
+}
+int main()
+{
+	test01();
+	test02();
+	return EXIT_SUCCESS;
+}
