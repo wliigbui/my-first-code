@@ -1,0 +1,71 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+
+class Animal
+{
+public:
+	virtual void speak()
+	{
+		cout << "动物说话" << endl;
+	}
+
+	//虚析构 解决通过父类指针指向子类对象释放时候不干净的问题
+	/*virtual ~Animal()
+	{
+		cout << "Animal析构" << endl;
+	}*/
+
+	//纯虚析构,需要类外实现
+	//如果函数中出现了纯虚析构，这个类就是抽象类
+	//不可以实例化
+	virtual ~Animal() = 0;
+
+};
+Animal::~Animal()
+{
+	cout << "Animal析构" << endl;
+}
+
+class Cat : public Animal
+{
+public:
+	Cat(const char* name)
+	{
+		this->m_Name = new char[strlen(name) + 1];
+		strcpy(this->m_Name, name);
+
+	}
+	virtual void speak()
+	{
+		cout << "小猫说话" << endl;
+	}
+
+	virtual ~Cat()
+	{
+		cout << "Cat析构" << endl;
+		if (this->m_Name != NULL)
+		{
+			delete this->m_Name;
+			this->m_Name = NULL;
+		}
+	}
+
+	char* m_Name;
+};
+
+void test01()
+{
+	Animal * animal = new Cat("咪咪");
+	animal->speak();
+
+	delete animal;
+	
+}
+
+int main()
+{
+	test01();
+	return EXIT_SUCCESS;
+}
