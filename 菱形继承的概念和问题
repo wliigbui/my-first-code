@@ -1,0 +1,47 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+class Animal
+{
+public:
+	int m_Age;
+};
+
+//虚基类
+class Sheep :virtual public Animal
+{
+
+};
+
+class Tuo : virtual public Animal
+{
+
+};
+
+class SheepTuo :public Sheep, public Tuo
+{
+
+};
+
+
+void test01()
+{
+	SheepTuo st;
+	st.Sheep::m_Age = 10;
+	st.Tuo::m_Age = 20;
+
+	//输出都是20 m_Age 变为同一份 且不需要定义域
+	cout << st.Sheep::m_Age << endl;
+	cout << st.Tuo::m_Age << endl;
+	cout << st.m_Age << endl;//    无二义性
+
+	cout << ((Animal*)((char*)&st + *(int*)((int*)*(int*)&st+1)))->m_Age<< endl;//通过地址偏移找到m_Age;
+}
+
+int main()
+{
+	test01();
+
+	return EXIT_SUCCESS;
+}
