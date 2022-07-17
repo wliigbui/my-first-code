@@ -1,0 +1,71 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+class Animal
+{
+public:
+//动态联编的写法为，doSpeak方法变为虚函数,父类上声明虚函数，发生多态
+//父类的引用和指针指向子类的对象
+	virtual void speak()
+	{
+		cout << "动物说话 " << endl;
+	}
+
+	virtual void eat()
+	{
+		cout << "动物吃东西" << endl;
+	}
+};
+
+class Cat:public Animal
+{
+public:
+	void speak()
+	{
+		cout << "小猫说话 " << endl;
+	}
+
+	virtual void eat()
+	{
+		cout << "小猫吃鱼" << endl;
+	}
+};
+
+
+//speak函数的地址早绑定，静态联编，编译阶段确定了地址
+//如果想调用猫的speak()，就不能提前绑定函数的地址了，所以需要在运行时确定函数的地址
+void doSpeak(Animal& animal)
+{
+	animal.speak();
+}
+
+
+void test01()
+{
+	Cat cat;
+	doSpeak(cat);
+
+	
+}
+
+void test02()
+{
+	//父类指针指向子类对象 多态
+	Animal* animal = new Cat;
+
+	animal->speak();
+	//内部运算
+	((void(*) ()) (*(int*)*(int*)animal))  ();
+
+	
+
+}
+
+int main()
+{
+	//test01();
+	test02();
+
+	return EXIT_SUCCESS;
+}
