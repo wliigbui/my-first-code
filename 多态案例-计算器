@@ -1,0 +1,106 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+class AbstructCalculator
+{
+public:
+	//填入两个数
+	void val1_set(int v)
+	{
+		m_val1 = v;
+	}
+	void val2_set(int v)
+	{
+		m_val2 = v;
+	}
+
+	//获取两个数
+	int val1_get()
+	{
+		return m_val1;
+	}
+	int val2_get()
+	{
+		return m_val2;
+	}
+
+	//提供算法
+	virtual int Calculate() = 0;
+	
+private:
+	int m_val1;
+	int m_val2;
+};
+
+
+class AddCalculator :public AbstructCalculator
+{
+public:
+	//加法算法
+	virtual int Calculate()
+	{
+		return val1_get() + val2_get();
+	}
+};
+
+class SubCalculator :public AbstructCalculator
+{
+public:
+	//减法算法
+	virtual int Calculate()
+	{
+		return val1_get() - val2_get();
+	}
+};
+
+class MulCalculator :public AbstructCalculator
+{
+public:
+	virtual int Calculate()
+	{
+		return val1_get() * val2_get();
+	}
+};
+
+
+void test01()
+{
+	int ret;
+	//加法测试
+	AbstructCalculator* a;
+	a = new AddCalculator;
+
+	a->val1_set(10);
+	a->val2_set(20);
+	ret = a->Calculate();
+
+	cout << "10+20= " << ret << endl;
+	delete a;
+
+	//减法
+	a = new SubCalculator;
+	a->val1_set(10);
+	a->val2_set(20);
+	ret = a->Calculate();
+
+	cout << "10-20= " << ret << endl;
+	delete a;
+
+	//乘法
+	a = new MulCalculator;
+	a->val1_set(10);
+	a->val2_set(20);
+	ret = a->Calculate();
+
+	cout << "10*20= " << ret << endl;
+	delete a;
+
+	
+}
+
+int main()
+{
+	test01();
+	return EXIT_SUCCESS;
+}
