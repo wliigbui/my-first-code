@@ -1,0 +1,33 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+//告诉编译器 遇到紧跟的T不要报错，T是一个类型
+template<class T>
+void mySwap(T& a,T& b)
+{
+	T tmp = a;
+	a = b;
+	b = tmp;
+}
+//数据交换模板
+
+void test01()
+{
+	int a = 10;
+	int b = 20;
+	//自动类型推导，T自动识别为int
+	mySwap(a, b);
+
+	//显示指定类型，人为让T为int
+	mySwap<int>(a, b);
+
+	cout << "a= " << a << endl;
+	cout << "b= " << b << endl;
+}
+
+int main()
+{
+	test01();
+	return EXIT_SUCCESS;
+}
