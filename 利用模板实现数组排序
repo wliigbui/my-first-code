@@ -1,0 +1,61 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+//对char和int 数组 进行排序 从大到小 利用选择排序
+
+//数组排序模板
+template<class T>
+void mySort(T arr[],int len)
+{
+	
+	for (int i = 0; i < len; i++)
+	{
+		int max = i;
+		for (int j = i + 1; j <= len; j++)
+		{
+			
+			if (arr[j] > arr[max])
+			{
+				//交换数据
+				T tmp = arr[max];
+				arr[max] = arr[j];
+				arr[j] = tmp;
+			}
+		}
+	}
+}
+
+//输出数组的模板
+template<class T>
+void printArr(T arr[], int len)
+{
+	for (int i = 0; i < len; i++)
+	{
+		cout << arr[i] << " ";
+	}
+}
+
+void test01()
+{
+	//int类型数组测试
+	int arr1[6] = { 2,4,1,3,6,5 };
+	int len1 = sizeof(arr1) / sizeof(arr1[0]);
+	mySort<int>(arr1,len1);
+	printArr(arr1, len1);
+	cout << endl;
+	
+	//char类型数组测试
+	char arr2[] = "helloworld";
+	int len2 = sizeof(arr2) / sizeof(arr2[0]);
+	mySort<char>(arr2, len2);
+	printArr(arr2, len2);
+}
+
+
+int main()
+{
+	test01();
+
+	return EXIT_SUCCESS;
+}
