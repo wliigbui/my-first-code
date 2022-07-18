@@ -1,0 +1,72 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+template<class T>
+T plus1(T a, T b)
+{
+	return a + b;
+}
+
+int plus2(int a, int b)
+{
+	return a + b;
+}
+
+void test01()
+{
+	int a = 10;
+	int b = 20;
+	char c = 'c';
+	//plus1(a, c);          // 函数模板不可以类型推导
+	int ret = plus2(a, c);  //普通函数可以进行隐式类型转换
+	cout << "ret = " << ret << endl;
+}
+
+
+//普通函数和模板函数的调用规则
+template<class T>
+void myPrint(T a, T b)
+{
+	cout << "模板函数调用（两个参数）" << endl;
+}
+
+void myPrint(int a, int b)
+{
+	cout << "普通函数调用（两个参数）" << endl;
+}
+
+template<class T>
+void myPrint(T a,T b,T c)
+{
+	cout << "模板函数调用（3个参数）" << endl;
+}
+void test02()
+{
+	int a = 10;
+	int b = 20;
+
+	//如果出现重载，优先使用普通函数调用，如果没有实现，出现错误
+	myPrint(a, b);
+
+	//如果想强制调用模板，可以使用空参数列表
+	myPrint<>(a, b);
+
+	//模板函数可以重载
+	int c = 30;
+	myPrint(a, b, c);
+
+	//如果函数模板可以更好的匹配，优先函数模板
+	//如果是调用普通函数，需要隐式类型转换
+	char c1 = 'c';
+	char d = 'd';
+	myPrint(c1, d);
+	
+}
+int main()
+{
+	test01();
+	test02();
+
+	return EXIT_SUCCESS;
+}
