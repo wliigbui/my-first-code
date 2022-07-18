@@ -1,0 +1,88 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+template<class NameType,class AgeType>
+class Person
+{
+public:
+	Person(NameType name, AgeType age)
+	{
+		this->m_Age = age;
+		this->m_Name = name;
+	}
+
+	void showPerson()
+	{
+		cout << "姓名： " << this->m_Name << endl;
+		cout << "年龄： " << this->m_Age << endl;
+	}
+	NameType m_Name;
+	AgeType m_Age;
+};
+
+void test01()
+{
+	//自动雷类型推导，类模板不支持
+	//Person p1("孙悟空", 600);
+
+	//显示指定类型
+	Person<string, int> p1("孙悟空", 500);
+	p1.showPerson();
+}
+
+
+class Person1
+{
+public:
+	void showPerson1()
+	{
+		cout << "Person1的调用" << endl;
+	}
+};
+
+class Person2
+{
+public:
+	void showPerson2()
+	{
+		cout << "Person2的调用" << endl;
+	}
+};
+
+template<class T>
+class myClass
+{
+public:
+	T obj;
+	void func1()
+	{
+		obj.showPerson1(); 
+	}
+	void func2()
+	{
+		obj.showPerson2();
+	}
+};
+//成员函数在程序运行时才会创建
+
+void test02()
+{
+	myClass<Person1> c1;
+	myClass<Person2> c2;
+
+	c1.func1();
+	//c1.func2();
+
+	//c2.func1();
+	c2.func2();
+
+
+
+}
+int main()
+{
+	//test01();
+	test02();
+	return EXIT_SUCCESS;
+}
