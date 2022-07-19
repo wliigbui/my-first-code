@@ -33,6 +33,7 @@ ostream& operator<<(ostream& cout, MyInteger myint)
 	return cout;
 }
 
+
 void test01()
 {
 	MyInteger myInt;
