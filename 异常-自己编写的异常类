@@ -1,0 +1,63 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Myexception :public exception
+{
+public:
+	Myexception(string error)
+	{
+		this->m_Error = error;
+	}
+
+	virtual ~Myexception()
+	{
+
+	}
+	virtual const char* what() const
+	{
+		//string 转 const char* :  c.str();
+		return this->m_Error.c_str();
+	}
+
+	string m_Error;
+};
+
+class Person
+{
+public:
+	Person(string name, int age)
+	{
+		this->m_Name = name;
+
+		//年龄做检测
+		if (age < 0 || age>200)
+		{
+			//抛出异常
+			throw Myexception("异常");
+		    
+		}
+	}
+
+	int m_Age;
+	string m_Name;
+};
+
+void test01()
+{
+	try
+	{
+		Person("悟空", 300);
+	}
+	catch (Myexception& e)
+	{
+		cout << e.what() << endl;
+	}
+}
+
+int main()
+{
+	test01();
+	return EXIT_SUCCESS;
+}
