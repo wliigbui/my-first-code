@@ -1,0 +1,48 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<string>
+#include<stdexcept>
+using namespace std;
+
+class Person
+{
+public:
+	Person(string name, int age)
+	{
+		this->m_Name = name;
+
+		//年龄做检测
+		if (age < 0 || age>200)
+		{
+			//抛出异常
+			//throw out_of_range("年龄越界");
+			throw length_error("年龄越界");
+		}
+	}
+
+	int m_Age;
+	string m_Name;
+};
+
+void test01()
+{
+	try
+	{
+		Person("张三", 300);
+	}
+
+	catch (out_of_range& e)
+	{
+		cout << e.what() << endl;
+	}
+	catch (length_error& e)
+	{
+		cout << e.what() << endl;
+	}
+}
+
+int main()
+{
+	test01();
+	return EXIT_SUCCESS;
+}
