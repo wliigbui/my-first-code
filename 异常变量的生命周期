@@ -1,0 +1,49 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+using namespace std;
+
+class MyException
+{
+public:
+	MyException()
+	{
+		cout << "默认构造" << endl;
+	}
+	MyException(const MyException& e)
+	{
+		cout << "拷贝构造" << endl;
+	}
+	~MyException()
+	{
+		cout << "析构" << endl;
+	}
+};
+
+void doWork()
+{
+	//throw new MyException();  //需要自行释放内存
+	//throw MyException(); //占用空间
+	MyException e = MyException();
+	throw &e;
+}
+
+void test01()
+{
+	try
+	{
+		doWork();
+	}
+
+	catch (MyException* e)
+	{
+		cout << "捕获异常" << endl;
+
+		//delete e;
+	}
+}
+
+int main()
+{
+	test01();
+	return EXIT_SUCCESS;
+}
