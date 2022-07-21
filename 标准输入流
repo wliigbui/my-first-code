@@ -1,52 +1,164 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
-#include<iomanip>
 using namespace std;
 
-/*
-cout.put()  //向缓存区写字符
-cout.write()  //从buffer中写num个字符到当前输出流中
-*/
+//cin.get() //一次只读取一个字符 换行符留在缓存区
+//cin.get(一个参数)//读一个字符
+//cin.get(两个参数)//可以读字符串
+//cin.getline()// 会把换行符丢掉
+//cin.ignore() //参数为n->忽略n个字符串
+//cin.peek() //偷看一个字符 再放回缓存区
+//cin.putback()//放回字符
+
 
 void test01()
 {
-	cout.put('a').put('b');
+	//输入as/n   缓冲区中 a s 换行 第一次a 第二次s
+	//第三次 换行
+	char c = cin.get();
+	cout << "c= " << c << endl;
 
-	char buf[1024] = "helloworld";
-	cout.write(buf,strlen(buf));
+	c = cin.get();
+	cout << "c= " << c << endl;
+
+	c = cin.get();
+	cout << "c= " << c << endl;
 }
 
 void test02()
 {
-	//通过流成员对象
-	int number = 99;
-	cout.width(20);
-	cout.fill('*');
-	cout.setf(ios::left);  //输出内容向左对齐
-	cout.unsetf(ios::dec);  //卸载十进制
-	cout.setf(ios::hex);  //设置十六进制
-	cout.setf(ios::showbase); // 强制输入整数基数 0 0x
-	cout.unsetf(ios::hex);
-	cout.setf(ios::oct);    //设置八进制
-	cout << number << endl;
+	char buf[1024];
+	cin.get(buf, 1024);
+
+	char c = cin.get();
+
+	if (c == '\n')
+	{
+		cout << "换行在缓冲区" << endl;
+	}
+	else
+	{
+		cout << "换行不在缓冲区" << endl;
+	}
+	cout << buf << endl;
 }
 
-//控制符方式   配合头文件使用 
+
+
 void test03()
 {
-	int number = 99;
-	cout << setw(20)
-		<< setfill('*')
-		<< setiosflags(ios::showbase)
-		<< setiosflags(ios::left)
-		<< hex
-		<< number
-		<< endl;
+	char buf[1024];
+	cin.getline(buf, 1024);
+
+	char c = cin.get();
+	if (c == '\n')
+	{
+		cout << "换行在缓冲区" << endl;
+	}
+	else
+	{
+		cout << "换行不在缓冲区" << endl;
+	}
+
+	cout << "buf= " << buf << endl;
+}
+
+
+void test04()
+{
+	cin.ignore(2);
+
+	char c = cin.get();
+
+	cout << "c= " << c << endl;
+}
+
+
+void test05()
+{
+	char c = cin.peek();
+
+	cout << "c= " << c << endl;
+
+	c = cin.get();
+
+	cout << "c= " << c << endl;
+}
+
+void test06()
+{
+	char c = cin.get();
+	cin.putback(c);
+
+	cout << c << endl;
+
+	char buf[1024];
+
+	cin.getline(buf, 1024);
+
+	cout << "buf= " << buf << endl;
+}
+
+//案例1  判断用户的是字符串还是数字
+void test07()
+{
+	cout << "请输入一串数字或者字符串" << endl;
+
+	//peek()
+	char c = cin.peek();
+
+	if (c >= '0' && c <= '9')
+	{
+		int num;
+		cin >> num;
+		cout << "输入的是数字" << "数字为：" << num << endl;
+	}
+	else
+	{
+		char buf[1024];
+		cin >> buf;
+		cout << "输入的是字符串" << "字符串为：" << buf << endl;
+	}
+}
+
+
+//案例2  让用户输入1-10的数字 如果输入有误 请重新输入
+void test08()
+{
+	cout << "请输入一个1-10的数组" << endl;
+	int num;
+
+	while (1)
+	{
+		cin >> num;
+		if (num > 0 && num <= 10)
+		{
+			cout << "输入成功" << endl;
+			break;
+		}
+		else
+		{
+			//cout << "输入错误,请重新输入" << endl;
+			//重置标志位
+			cin.clear();
+			cin.get();
+			cin.sync(); //清空缓存区
+
+			cout << "标志位：" << cin.fail() << endl;  //标志位0 表示正常 1 表示不正常
+		}
+	}
+	
+	
 }
 int main()
 {
 	//test01();
 	//test02();
-	test03();
+	//test03();
+	//test04();
+	//test05();
+	//test06();
+	//test07();
+	test08();
 	return EXIT_SUCCESS;
 }
