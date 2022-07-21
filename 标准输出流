@@ -1,0 +1,52 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<iomanip>
+using namespace std;
+
+/*
+cout.put()  //向缓存区写字符
+cout.write()  //从buffer中写num个字符到当前输出流中
+*/
+
+void test01()
+{
+	cout.put('a').put('b');
+
+	char buf[1024] = "helloworld";
+	cout.write(buf,strlen(buf));
+}
+
+void test02()
+{
+	//通过流成员对象
+	int number = 99;
+	cout.width(20);
+	cout.fill('*');
+	cout.setf(ios::left);  //输出内容向左对齐
+	cout.unsetf(ios::dec);  //卸载十进制
+	cout.setf(ios::hex);  //设置十六进制
+	cout.setf(ios::showbase); // 强制输入整数基数 0 0x
+	cout.unsetf(ios::hex);
+	cout.setf(ios::oct);    //设置八进制
+	cout << number << endl;
+}
+
+//控制符方式   配合头文件使用 
+void test03()
+{
+	int number = 99;
+	cout << setw(20)
+		<< setfill('*')
+		<< setiosflags(ios::showbase)
+		<< setiosflags(ios::left)
+		<< hex
+		<< number
+		<< endl;
+}
+int main()
+{
+	//test01();
+	//test02();
+	test03();
+	return EXIT_SUCCESS;
+}
