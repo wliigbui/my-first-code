@@ -1,0 +1,149 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void test01()
+{
+	vector<int> v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+		//查看v的容积大小
+		//1、2、3、4、6、6、9、9、9、13
+		cout << v.capacity() << endl;
+	}
+}
+
+void printVector(vector<int>& v)
+{
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << "   ";;
+	}
+	cout << endl;
+}
+void test02()
+{
+	vector<int> v;//默认构造
+	int arr[] = { 2,3,4,1,9 };
+	//拷贝构造
+	vector<int> v1(arr, arr + sizeof(arr) / sizeof(int));
+	vector<int> v2(v1.begin(), v1.end());
+
+	printVector(v2);
+
+	vector<int> v3(10, 100); //构造10个100的元素
+	printVector(v3);
+
+	//赋值使用
+	vector<int> v4;
+	v4.assign(v3.begin(), v3.end());
+	printVector(v4);
+
+	v4.swap(v2);//交换
+	printVector(v4);
+	printVector(v2);
+
+	cout << v4.size() << endl;;//大小
+	v4.empty();//为空 -> true
+
+	v4.resize(10,-1);//重新分配大小,并补全为-1；也可以只有一个大小参数
+	printVector(v4);
+}
+
+
+//使用swap 收缩空间
+void test03()
+{
+	vector<int> v;
+	for (int i = 0; i < 100000; i++) {
+		v.push_back(i);
+	}
+
+	cout << "v的容量" << v.capacity() << endl;
+	cout << "v的大小" << v.size() << endl;
+
+	v.resize(3);
+
+	cout << "v的容量" << v.capacity() << endl;
+	cout << "v的大小" << v.size() << endl;
+
+	//swap
+	vector<int> (v).swap(v);
+	cout << "v的容量" << v.capacity() << endl;
+	cout << "v的大小" << v.size() << endl;
+}
+
+//reserve（len） 预留len个长度,不初始化，不可访问
+void test04()
+{
+	vector<int> v;
+
+	//v.reserve(100000);//预留100000空间
+	int* p = NULL;
+	int num = 0;
+	for (int i = 0; i < 100000; i++) {
+		v.push_back(i);
+		if (p != &v[0]){
+			p = &v[0];
+			num++;
+		}
+		cout << num << endl;//30 -> 开辟了30次空间
+	}
+}
+
+void test05()
+{
+	vector<int>v;
+	v.push_back(10);
+	v.push_back(20);
+	v.push_back(30);
+	v.push_back(40);
+
+	cout << "v的front= " << v.front() << endl;
+	cout << "v的back= " << v.back() << endl;
+
+	//插入
+	v.insert(v.begin(),2,100);//在开头(使用迭代器标识位置)插入2个100
+	printVector(v);
+
+	v.pop_back();//删除最后一个元素
+	printVector(v);
+
+	v.erase(v.begin()); //删除开头元素
+	printVector(v);
+
+	v.erase(v.begin(), v.end()); // 删除从开头到结尾的元素（使用迭代器标识位置）
+	v.clear();//清空所有数据
+	if (v.empty()) {
+		cout << "v为空" << endl;
+	}
+}
+
+void test06()
+{
+	//逆序遍历
+	vector<int> v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+	}
+
+	//reverse_iterator逆序迭代器
+	for (vector<int>::reverse_iterator it = v.rbegin(); it != v.rend(); it++) {
+		cout << *it << "  ";
+	}
+
+	//vector迭代器是随机访问迭代器
+	//支持跳跃式访问
+	vector<int>::iterator itBegin = v.begin();
+	itBegin = itBegin + 3;
+}
+int main()
+{
+	//test01();
+	//test02();
+	//test03();
+	//test04();
+	//test05();
+	test06();
+	return EXIT_SUCCESS;
+}
