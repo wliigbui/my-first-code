@@ -1,0 +1,92 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<deque>
+#include<algorithm>
+using namespace std;
+
+
+void printDeque(const deque<int>& d)
+{
+	//普通迭代器iterator
+	//逆序迭代器reverse_iterator
+	//只读迭代器const_iterator
+	for (deque<int>::const_iterator it = d.begin(); it != d.end(); it++)
+	{
+		//*it = 100000;
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+void test01()
+{
+	deque<int>d;
+
+	d.push_back(10);  //尾插
+	d.push_back(40);
+	d.push_back(50);
+	d.push_front(20);  //头插
+	d.pop_back();//尾删
+	d.pop_front();//头删
+
+	printDeque(d);
+
+	deque<int>d2(d.begin(), d.end());  //拷贝构造
+	d2.push_back(10000);
+
+	//交换
+	d.swap(d2);
+
+	printDeque(d);
+
+	if (d2.empty())
+	{
+		cout << "为空" << endl;
+	}
+	else
+	{
+		cout << "不为空 大小为：" << d2.size() << endl;
+	}
+
+	cout << d.front() << endl;  //第一个
+
+	cout << d.back() << endl;   //最后一个
+
+
+	//插入
+	deque<int>d3;
+
+}
+
+
+//排序规则
+bool myCompare(int v1,int v2) {
+	return v1 > v2;
+}
+void test02()
+{
+	//排序 sort
+	deque<int>d;
+	d.push_back(5);
+	d.push_back(15);
+	d.push_back(3);
+	d.push_back(7);
+	d.push_back(40);
+
+	printDeque(d);
+
+	sort(d.begin(), d.end()); //小到大
+
+	printDeque(d);
+
+	sort(d.begin(), d.end(), myCompare);
+	printDeque(d);
+
+}
+
+int main()
+{
+	//test01();
+	test02();
+
+	return EXIT_SUCCESS;
+}
